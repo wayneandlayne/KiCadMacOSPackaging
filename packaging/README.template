@@ -1,0 +1,55 @@
+Hi folks!
+
+This is one of the pre-pre-pre-alpha DO NOT USE test builds I have made for Kicad for OS X.
+
+Please do not actually use these builds.  I have no idea if they actually work at this point, I’m serious.
+
+Please do not contact the Kicad Developer’s list about this build, or file bugs based on it.  I’m not doing this in secret or anything, but I am currently testing builds, not the software!
+
+Thanks for your cooperation, folks!
+
+Adam Wolf
+Wayne and Layne, LLC
+
+Test Procedure
+==============
+
+1) Open up the Kicad directory.  Open each of the programs inside of the directory, one at a time, and close it.  Let me know if there are any obvious issues.  For example, opening kiway_test will probably cause an error message.
+
+2) Open up the Kicad application.
+3) In the Kicad application, click the eeschema button. Verify it opens eeschema.  Close eeschema.
+4) In the Kicad application, click the cvpcb button.  Verify it opens cvpcb.  Close cvpcb.
+5) In the Kicad application, click the pcbnew button.  In pcbnew, go to Tools -> Scripting Console.  In the scripting console, type:
+    
+    print “hello world”
+
+and press enter.
+
+Copy and paste the entirety of the contents of the scripting console into your test report, like this:
+
+Welcome To PyCrust 0.9.8 - KiCAD Python Shell
+Python 2.6.8 (unknown, Sep  2 2013, 05:24:29) 
+[GCC 4.2.1 Compatible Apple LLVM 5.0 (clang-500.0.68)] on darwin
+Type "help", "copyright", "credits" or "license" for more information.
+print "hello world"
+hello world
+
+It may be missing some characters, like >>>.  That’s ok.
+
+7) In the Kicad application, click the gerbview button.  Verify it opens gerbview.  Close gerbview.
+
+8) In the Kicad application, click the bitmap2component button.  Verify it opens bitmap2component.  Close bitmap2component.
+
+9) In the Kicad application, click the pcbcalculator button.  Verify it opens pcbcalculator.  Close pcbcalculator.
+
+10) Close Kicad.
+
+After you have completed these steps, please go to http://discuss.wayneandlayne.com and report your findings in the Experimental Mac Build thread.  Remember to include the output of the command sw_vers.  For example:
+
+adams-mbp:~ wolf$ sw_vers
+ProductName:	Mac OS X
+ProductVersion:	10.9.2
+BuildVersion:	13C64
+
+Adam Wolf
+Wayne and Layne, LLC
