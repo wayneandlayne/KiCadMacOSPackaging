@@ -6,7 +6,7 @@ CMAKE_SETTINGS="-DCMAKE_C_COMPILER=`which clang` -DCMAKE_CXX_COMPILER=`which cla
 run_cmake() {
 	mkdir -p build
 	cd build
-	cmake ../kicad $CMAKE_SETTINGS
+	cmake $CMAKE_SETTINGS ../kicad
 	cd -
 }
 
