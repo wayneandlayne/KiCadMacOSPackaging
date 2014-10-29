@@ -56,17 +56,19 @@ echo "KiCad revision: r$KICAD_REVNO" >> $MOUNTPOINT/README
 echo "Packaged on $NOW" >> $MOUNTPOINT/README
 
 if bzr revno; then
-    echo "Packaging script revision: r`bzr revno`" >> $MOUNTPOINT_README
+    echo "Packaging script revision: r`bzr revno`" >> $MOUNTPOINT/README
 fi
 
 if [ -f conf/build_revno ]; then
-    echo "Build script revision: r`cat conf/build_revno`"
+    echo "Build script revision: r`cat conf/build_revno`" >>$MOUNTPOINT/README
 fi
 
 if [ -f conf/cmake_settings ]; then 
-    echo "CMake Settings: `cat conf/cmake_settings`" >> $MOUNTPOINT_README
+    echo "CMake Settings: `cat conf/cmake_settings`" >> $MOUNTPOINT/README
 fi
 
+
+cp $MOUNTPOINT/README ../
 hdiutil detach $MOUNTPOINT
 rm -r $MOUNTPOINT
 rm $FINAL_DMG
@@ -74,4 +76,3 @@ hdiutil convert $NEW_DMG  -format UDZO -imagekey zlib-level=9 -o $FINAL_DMG
 rm $NEW_DMG
 rm $TEMPLATE #it comes from the tar bz2
 mv $FINAL_DMG ../
-echo "$NOW" > now
