@@ -1,3 +1,26 @@
+KiCad
+=====
+KiCad is an EDA software suite for the creation of professional schematics and printed circuit boards up to 32 copper layers. KiCad runs on Windows, Linux and OS X and is released under the open-source GNU GPL v2 free of charge.
+
+With KiCad you can create schematic diagrams and printed circuit board up to 32 copper layers. KiCad comes with a rich set of libraries with 3D models as well.
+
+KiCad is a mature EDA software tool under active development by a team of developers and a vibrant user group. KiCad team counts three main developers and a dozen of regular contributors.
+
+Documentation
+=============
+Documentation is available in this disk image under docs/, and is available online at http://www.kicad-pcb.org/.
+
 Changelog
 =========
 You can browse the changelog at https://bazaar.launchpad.net/~kicad-product-committers/kicad/product/changes.
+
+Reporting Issues
+================
+The KiCad developers are working hard to provide quality, binary releases to our users.  As of September 2014, the OS X package is under heavy, active development.
+
+If you encounter issues with this software, please report a bug at https://bugs.launchpad.net/kicad.
+
+To help us, please include the details from "About This Build" in this file or the name of the download file (kicad-r*.dmg).  Please also include the output from running the following command in the Terminal:
+
+    sw_vers
+

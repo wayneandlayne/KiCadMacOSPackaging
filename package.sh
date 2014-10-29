@@ -50,8 +50,8 @@ mv ../build.log ../build.$NOW.log
 
 #Update README
 echo "" >> $MOUNTPOINT/README
-echo "Build details" >> $MOUNTPOINT/README
-echo "=============" >> $MOUNTPOINT/README
+echo "About This Build" >> $MOUNTPOINT/README
+echo "================" >> $MOUNTPOINT/README
 echo "KiCad revision: r$KICAD_REVNO" >> $MOUNTPOINT/README
 echo "Packaged on $NOW" >> $MOUNTPOINT/README
 
