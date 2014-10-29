@@ -1,7 +1,7 @@
 #!/bin/bash
 
 NUM_OF_CORES=3
-CMAKE_SETTINGS= "-DCMAKE_C_COMPILER=`which clang` \
+CMAKE_SETTINGS="-DCMAKE_C_COMPILER=`which clang` \
 		-DCMAKE_CXX_COMPILER=`which clang++` \
 		-DwxWidgets_CONFIG_EXECUTABLE=../wx-bin/bin/wx-config \
 		-DKICAD_SCRIPTING=OFF \
