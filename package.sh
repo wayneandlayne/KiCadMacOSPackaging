@@ -45,7 +45,8 @@ rm -r $MOUNTPOINT/Kicad
 mkdir -p $MOUNTPOINT/Kicad
 cp -r ../$KICAD_APPS/* $MOUNTPOINT/Kicad/.
 cp README.template $MOUNTPOINT/README
-cp conf/build.log $MOUNTPOINT
+cp ../build.log $MOUNTPOINT/build.$NOW.log
+mv ../build.log ../build.$NOW.log
 
 #Update README
 echo "" >> $MOUNTPOINT/README
