@@ -73,3 +73,4 @@ hdiutil convert $NEW_DMG  -format UDZO -imagekey zlib-level=9 -o $FINAL_DMG
 rm $NEW_DMG
 rm $TEMPLATE #it comes from the tar bz2
 mv $FINAL_DMG ../
+echo "$NOW" > now
