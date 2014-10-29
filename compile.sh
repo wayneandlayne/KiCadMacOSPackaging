@@ -20,4 +20,4 @@ build_kicad() {
 run_cmake
 build_kicad
 mkdir -p conf
-echo "$CMAKE_SETTINGS" > conf/cmake_settings
+echo "$CMAKE_SETTINGS" > ../conf/cmake_settings
