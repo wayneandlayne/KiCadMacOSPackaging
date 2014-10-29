@@ -15,9 +15,10 @@ build_kicad() {
 	mkdir -p build
 	cd build
 	make -j$NUM_OF_CORES || exit 1
+        cd -
 }
 
 run_cmake
 build_kicad
 mkdir -p conf
-echo "$CMAKE_SETTINGS" > ../conf/cmake_settings
+echo "$CMAKE_SETTINGS" > conf/cmake_settings
