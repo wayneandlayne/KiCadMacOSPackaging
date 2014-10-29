@@ -160,8 +160,8 @@ check_kicad() {
 	echo -n "Getting the current revision: "
 	REVNO=`bzr revno`
 	echo "$REVNO"
-	echo "Cleaning source tree."
-	bzr clean-tree --verbose --force --ignored --unknown --detritus
+	#echo "Cleaning source tree."
+	#bzr clean-tree --verbose --force --ignored --unknown --detritus
 	cd -
 }
 
