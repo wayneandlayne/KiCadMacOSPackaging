@@ -64,7 +64,8 @@ if [ -f ../conf/build_revno ]; then
 fi
 
 if [ -f ../conf/cmake_settings ]; then 
-    echo "CMake Settings: `cat ../conf/cmake_settings`" >> $MOUNTPOINT/README
+    source ../conf/cmake_settings
+    echo "CMake Settings: $CMAKE_SETTINGS" >> $MOUNTPOINT/README
 fi
 
 
