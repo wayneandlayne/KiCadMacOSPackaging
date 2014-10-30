@@ -59,11 +59,11 @@ if bzr revno; then
     echo "Packaging script revision: r`bzr revno`" >> $MOUNTPOINT/README
 fi
 
-if [ -f conf/build_revno ]; then
+if [ -f ../conf/build_revno ]; then
     echo "Build script revision: r`cat conf/build_revno`" >>$MOUNTPOINT/README
 fi
 
-if [ -f conf/cmake_settings ]; then 
+if [ -f ../conf/cmake_settings ]; then 
     echo "CMake Settings: `cat conf/cmake_settings`" >> $MOUNTPOINT/README
 fi
 
