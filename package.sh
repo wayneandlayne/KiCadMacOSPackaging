@@ -60,11 +60,11 @@ if bzr revno; then
 fi
 
 if [ -f ../conf/build_revno ]; then
-    echo "Build script revision: r`cat conf/build_revno`" >>$MOUNTPOINT/README
+    echo "Build script revision: r`cat ../conf/build_revno`" >>$MOUNTPOINT/README
 fi
 
 if [ -f ../conf/cmake_settings ]; then 
-    echo "CMake Settings: `cat conf/cmake_settings`" >> $MOUNTPOINT/README
+    echo "CMake Settings: `cat ../conf/cmake_settings`" >> $MOUNTPOINT/README
 fi
 
 
