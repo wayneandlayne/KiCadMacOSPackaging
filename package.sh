@@ -43,7 +43,7 @@ hdiutil attach $NEW_DMG -noautoopen -mountpoint $MOUNTPOINT
 
 rm -r $MOUNTPOINT/Kicad
 mkdir -p $MOUNTPOINT/Kicad
-cp -r ../$KICAD_APPS/* $MOUNTPOINT/Kicad/.
+rsync -al ../$KICAD_APPS/* $MOUNTPOINT/Kicad/.
 cp README.template $MOUNTPOINT/README
 cp ../build.log $MOUNTPOINT/build.$NOW.log
 mv ../build.log ../build.$NOW.log

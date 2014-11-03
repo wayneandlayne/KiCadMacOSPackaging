@@ -46,7 +46,7 @@ check_brew_depends() {
 
 check_bzrtools() {
 	echo "Testing for bzrtools (patch command)"
-	PATCH_RESULTS=`bzr patch 2>&1`
+	PATCH_RESULTS=`bzr patch --help 2>&1`
 	if echo $PATCH_RESULTS | grep 'ERROR: unknown command "patch"' > /dev/null; then
 		echo "bzr patch doesn't appear to work."
 		echo "Installing bzrtools to ~/.bazaar/plugins"
@@ -54,7 +54,7 @@ check_bzrtools() {
     		mkdir -p ~/.bazaar/plugins/
 		echo "Extracting bzrtools to bzr's plugins directory."
     		tar zxf /tmp/bzrtools.tar.gz -C ~/.bazaar/plugins/
-		PATCH_RESULTS=`bzr patch 2>&1`
+		PATCH_RESULTS=`bzr patch --help 2>&1`
 		if echo $PATCH_RESULTS | grep 'ERROR: unknown command "patch"' > /dev/null; then
 			echo "bzr patch still doesn't appear to work.  Exiting!"
 			exit 1
