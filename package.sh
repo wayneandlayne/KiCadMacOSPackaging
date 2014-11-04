@@ -70,6 +70,10 @@ fi
 
 
 cp $MOUNTPOINT/README ../
+
+ls -l $MOUNTPOINT
+ls -l $MOUNTPOINT/*
+
 hdiutil detach $MOUNTPOINT
 rm -r $MOUNTPOINT
 rm $FINAL_DMG
