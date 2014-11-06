@@ -102,7 +102,7 @@ check_wx_patched() {
 		patch -p0 < ../kicad/patches/wxwidgets-3.0.0_macosx.patch
 		patch -p0 < ../kicad/patches/wxwidgets-3.0.0_macosx_bug_15908.patch
 		patch -p0 < ../kicad/patches/wxwidgets-3.0.0_macosx_soname.patch
-		patch -p0 < ../patches/patch-webview_webkit.mm.diff
+		patch -p0 < ../kicad/patches/wxwidgets-3.0.2_macosx_yosemite.patch
 		cd -
 	fi	
 }
