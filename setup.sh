@@ -154,6 +154,8 @@ check_kicad() {
 		echo "Checking out KiCad source.  This is going to take a while."
 		bzr branch lp:kicad
 	fi
+        PATCH_DIR=`pwd`/patches
+
 	cd kicad
 	echo "Updating KiCad"
 	bzr pull
@@ -162,6 +164,7 @@ check_kicad() {
 	echo "$REVNO"
 	#echo "Cleaning source tree."
 	#bzr clean-tree --verbose --force --ignored --unknown --detritus
+	patch -p0 -N < $PATCH_DIR/osx-bundlefix.patch
 	cd -
 }
 
