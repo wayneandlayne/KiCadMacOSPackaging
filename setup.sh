@@ -103,6 +103,7 @@ check_wx_patched() {
 		patch -p0 < ../kicad/patches/wxwidgets-3.0.0_macosx_bug_15908.patch
 		patch -p0 < ../kicad/patches/wxwidgets-3.0.0_macosx_soname.patch
 		patch -p0 < ../kicad/patches/wxwidgets-3.0.2_macosx_yosemite.patch
+		patch -p0 < ../kicad/patches/wxwidgets-3.0.0_macosx_scrolledwindow.patch
 		cd -
 	fi	
 }
@@ -164,7 +165,6 @@ check_kicad() {
 	echo "$REVNO"
 	#echo "Cleaning source tree."
 	#bzr clean-tree --verbose --force --ignored --unknown --detritus
-	patch -p0 -N < $PATCH_DIR/osx-bundlefix.patch
 	cd -
 }
 
