@@ -68,11 +68,11 @@ if [ -f ../conf/cmake_settings ]; then
     echo "CMake Settings: $CMAKE_SETTINGS" >> $MOUNTPOINT/README
 fi
 
+if [ -d ../docs ]; then
+    cp -r ../docs/* docs/.
+fi
 
-cp $MOUNTPOINT/README ../
-
-ls -l $MOUNTPOINT
-ls -l $MOUNTPOINT/*
+cp $MOUNTPOINT/README ../ #So we can archive the generated README outside of the DMG as well
 
 hdiutil detach $MOUNTPOINT
 rm -r $MOUNTPOINT
