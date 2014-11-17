@@ -49,7 +49,8 @@ cp ../build.log $MOUNTPOINT/build.$NOW.log
 mv ../build.log ../build.$NOW.log
 
 if [ -d ../docs ]; then
-    cp -r ../docs/* /Kicad/doc/.
+    mkdir -p $MOUNTPOINT/Kicad/doc/
+    cp -r ../docs/* $MOUNTPOINT/Kicad/doc/.
 fi
 
 #Update README
