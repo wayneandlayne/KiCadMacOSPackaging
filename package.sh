@@ -48,6 +48,10 @@ cp README.template $MOUNTPOINT/README
 cp ../build.log $MOUNTPOINT/build.$NOW.log
 mv ../build.log ../build.$NOW.log
 
+if [ -d ../docs ]; then
+    cp -r ../docs/* /Kicad/doc/.
+fi
+
 #Update README
 echo "" >> $MOUNTPOINT/README
 echo "About This Build" >> $MOUNTPOINT/README
@@ -66,10 +70,6 @@ fi
 if [ -f ../conf/cmake_settings ]; then 
     source ../conf/cmake_settings
     echo "CMake Settings: $CMAKE_SETTINGS" >> $MOUNTPOINT/README
-fi
-
-if [ -d ../docs ]; then
-    cp -r ../docs/* docs/.
 fi
 
 cp $MOUNTPOINT/README ../ #So we can archive the generated README outside of the DMG as well
