@@ -48,9 +48,9 @@ cp README.template $MOUNTPOINT/README
 cp ../build.log $MOUNTPOINT/build.$NOW.log
 mv ../build.log ../build.$NOW.log
 
-if [ -d ../docs ]; then
-    mkdir -p $MOUNTPOINT/Kicad/doc/
-    cp -r ../docs/* $MOUNTPOINT/Kicad/doc/.
+if [ -d ../help ]; then
+    mkdir -p $MOUNTPOINT/Kicad/help
+    cp -r ../help/* $MOUNTPOINT/Kicad/help/.
 fi
 
 #Update README
