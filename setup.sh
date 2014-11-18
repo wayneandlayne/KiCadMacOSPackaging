@@ -132,7 +132,7 @@ check_wx_build() {
 		      --with-zlib=builtin \
 		      --with-expat=builtin \
 		      --without-liblzma \
-		      --with-macosx-version-min=10.5 \
+		      --with-macosx-version-min=10.7 \
 		      --enable-universal-binary=i386,x86_64 \
 		      CPPFLAGS="-stdlib=libstdc++" \
 		      LDFLAGS="-stdlib=libstdc++" \
