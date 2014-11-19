@@ -23,7 +23,7 @@ check_brew() {
 check_brew_depends() {
 	echo "Installing dependencies."
 	check_brew
-        if ! brew list bzr cmake doxygen wget glew cairo openssl; then
+        if ! brew list bzr cmake doxygen wget glew cairo openssl > /dev/null; then
             brew install bzr cmake doxygen wget glew cairo openssl
         fi
 }
