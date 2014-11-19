@@ -1,5 +1,8 @@
 #!/bin/bash
 
+set -e
+set -x
+
 NUM_OF_CORES=6
 source cmake_settings
 SRC=kicad

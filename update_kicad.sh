@@ -4,7 +4,7 @@ set -e
 set -x
 
 BASE=`pwd`
-SRC=../kicad/kicad
+SRC=kicad
 
 if [ ! -d $SRC ]; then
 	mkdir -p $SRC
@@ -38,6 +38,11 @@ if [ -e $BASE/kicad_patches ]; then
 		patch -p0 < $BASE/kicad_patches/$patch
 		echo "$patch" >> $BASE/notes/kicad_patches
 	done
+fi
+
+if [ -e $BASE/kicad_downloads ]; then
+	mkdir -p .downloads-by-cmake
+	cp -r $BASE/kicad_downloads/* .downloads-by-cmake/.
 fi
 
 cd -
