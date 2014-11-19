@@ -1,12 +1,13 @@
 #!/bin/bash
 
-NUM_OF_CORES=3
+NUM_OF_CORES=6
 source cmake_settings
+SRC=kicad
 
 run_cmake() {
 	mkdir -p build
 	cd build
-	cmake $CMAKE_SETTINGS ../kicad
+	cmake $CMAKE_SETTINGS ../$SRC
 	cd -
 }
 
@@ -20,3 +21,4 @@ build_kicad() {
 
 run_cmake
 build_kicad
+echo "$CMAKE_SETTINGS" > notes/cmake_settings

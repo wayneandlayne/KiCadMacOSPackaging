@@ -1,28 +1,31 @@
-#!/bin/bash -x
+#!/bin/bash
+
+set -x
+set -e
 
 FINAL_DMG=kicad.dmg
+FINAL_DMG_DEST=../dmg
 NOW=`date +%Y%d%m-%H%M%S`
-KICAD_REVNO=0
-
-if [ "$#" -eq 1 ]; then
-  KICAD_REVNO=`echo "$1" | grep '^[0-9]*$'`
-  if [ -z "$KICAD_REVNO" ]; then
-    echo "First argument represents KiCad bzr revno, and must be completely numeric."
-    exit 1
-  else
-    FINAL_DMG=kicad-r$KICAD_REVNO.$NOW.dmg
-  fi
-else
-  echo "First argument (KiCad bzr revno) missing."
-  exit 1
-fi
-
+KICAD_REVNO=abc 
 KICAD_APPS=./bin
 PACKAGING_DIR=packaging
 TEMPLATE=kicadtemplate.dmg
 NEW_DMG=kicad.uncompressed.dmg
-
 MOUNTPOINT=mnt
+
+if [ "$#" -eq 1 ]; then
+  KICAD_REVNO=$1
+elif [ -e notes/kicad_revno ]; then
+  KICAD_REVNO=`cat notes/kicad_revno`
+fi
+  
+if [ -z "$KICAD_REVNO" ]; then
+    echo "First argument represents KiCad bzr revno, and must be completely numeric."
+    exit 1
+fi
+
+FINAL_DMG=kicad-r$KICAD_REVNO.$NOW.dmg
+
 
 if [ ! -d $KICAD_APPS ]; then
    echo "KiCad apps directory doesn't appear to exist."
@@ -37,48 +40,55 @@ fi
 cd $PACKAGING_DIR
 tar xf $TEMPLATE.tar.bz2
 cp $TEMPLATE $NEW_DMG
-rm -r $MOUNTPOINT
+if [ -e $MOUNTPOINT ]; then
+    rm -r $MOUNTPOINT
+fi
 mkdir -p $MOUNTPOINT
 hdiutil attach $NEW_DMG -noautoopen -mountpoint $MOUNTPOINT
 
-rm -r $MOUNTPOINT/Kicad
+if [ -e $MOUNTPOINT/Kicad ]; then
+    rm -r $MOUNTPOINT/Kicad
+fi
 mkdir -p $MOUNTPOINT/Kicad
-rsync -al ../$KICAD_APPS/* $MOUNTPOINT/Kicad/.
+rsync -al ../$KICAD_APPS/* $MOUNTPOINT/Kicad/. #must preserve symlinks
 cp README.template $MOUNTPOINT/README
-cp ../build.log $MOUNTPOINT/build.$NOW.log
-mv ../build.log ../build.$NOW.log
-
-if [ -d ../help ]; then
-    mkdir -p $MOUNTPOINT/Kicad/help
-    cp -r ../help/* $MOUNTPOINT/Kicad/help/.
+if [ -e ../notes/build.log ]; then
+    cp ../notes/build.log ../notes/build.$NOW.log
+    cp ../notes/build.$NOW.log $MOUNTPOINT/build.$NOW.log
 fi
 
 #Update README
 echo "" >> $MOUNTPOINT/README
 echo "About This Build" >> $MOUNTPOINT/README
 echo "================" >> $MOUNTPOINT/README
-echo "KiCad revision: r$KICAD_REVNO" >> $MOUNTPOINT/README
 echo "Packaged on $NOW" >> $MOUNTPOINT/README
+echo "KiCad revision: r$KICAD_REVNO" >> $MOUNTPOINT/README
+
+if [ -f ../notes/help_revno ]; then
+    echo "Help revision: r`cat ../notes/help_revno`" >>$MOUNTPOINT/README
+fi
+
+if [ -f ../notes/build_revno ]; then
+    echo "Build script revision: r`cat ../notes/build_revno`" >>$MOUNTPOINT/README
+fi
+
+if [ -f ../notes/cmake_settings ]; then 
+    echo "CMake Settings: `cat ../notes/cmake_settings`" >> $MOUNTPOINT/README
+fi
 
 if bzr revno; then
     echo "Packaging script revision: r`bzr revno`" >> $MOUNTPOINT/README
 fi
 
-if [ -f ../conf/build_revno ]; then
-    echo "Build script revision: r`cat ../conf/build_revno`" >>$MOUNTPOINT/README
-fi
-
-if [ -f ../conf/cmake_settings ]; then 
-    source ../conf/cmake_settings
-    echo "CMake Settings: $CMAKE_SETTINGS" >> $MOUNTPOINT/README
-fi
-
-cp $MOUNTPOINT/README ../ #So we can archive the generated README outside of the DMG as well
+cp $MOUNTPOINT/README ../notes/ #So we can archive the generated README outside of the DMG as well
 
 hdiutil detach $MOUNTPOINT
 rm -r $MOUNTPOINT
-rm $FINAL_DMG
+if [ -e $FINAL_DMG ] ; then
+    rm -r $FINAL_DMG
+fi
 hdiutil convert $NEW_DMG  -format UDZO -imagekey zlib-level=9 -o $FINAL_DMG
 rm $NEW_DMG
 rm $TEMPLATE #it comes from the tar bz2
-mv $FINAL_DMG ../
+mkdir -p $FINAL_DMG_DEST
+mv $FINAL_DMG $FINAL_DMG_DEST/.
