@@ -8,4 +8,4 @@ set -x
 ./compile_wx.sh
 ./compile_kicad.sh
 ./install_kicad.sh
-./package.sh
+./package_kicad.sh
