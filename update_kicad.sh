@@ -7,10 +7,7 @@ BASE=`pwd`
 SRC=kicad
 
 if [ ! -d $SRC ]; then
-	mkdir -p $SRC
-	cd $SRC
-	bzr branch lp:kicad
-	cd -
+	bzr branch lp:kicad $SRC
 fi
 
 cd $SRC
