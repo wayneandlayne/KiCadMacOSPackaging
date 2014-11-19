@@ -13,8 +13,10 @@ fi
 cd $SRC
 #check to make sure the SRC is actually a kicad checkout!
 if ! bzr info | grep "checkout of branch: bzr+ssh://bazaar.launchpad.net/+branch/kicad/$"; then
-    echo "$SRC is not a KiCad checkout.  Exiting."
-    exit 1
+    if ! bzr info | grep "parent branch: http://bazaar.launchpad.net/~kicad-product-committers/kicad/product/$"; then
+    	echo "$SRC is not a KiCad checkout.  Exiting."
+    	exit 1
+    fi
 fi
 
 echo "Cleaning tree."
