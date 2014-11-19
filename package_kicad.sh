@@ -64,6 +64,11 @@ echo "================" >> $MOUNTPOINT/README
 echo "Packaged on $NOW" >> $MOUNTPOINT/README
 echo "KiCad revision: r$KICAD_REVNO" >> $MOUNTPOINT/README
 
+if [ -f ../notes/kicad_patches ]; then
+    echo "KiCad patched with following patches:" >> $MOUNTPOINT/README
+    cat ../notes/kicad_patches >> $MOUNTPOINT/README
+fi
+
 if [ -f ../notes/help_revno ]; then
     echo "Help revision: r`cat ../notes/help_revno`" >>$MOUNTPOINT/README
 fi

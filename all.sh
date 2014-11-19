@@ -7,3 +7,5 @@ set -x
 ./update_kicad.sh
 ./compile_wx.sh
 ./compile_kicad.sh
+./install_kicad.sh
+./package.sh

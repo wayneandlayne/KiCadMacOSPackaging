@@ -6,6 +6,7 @@ set -x
 NUM_OF_CORES=6
 source cmake_settings
 SRC=kicad
+REVNO=`bzr revno`
 
 run_cmake() {
 	mkdir -p build
@@ -25,3 +26,5 @@ build_kicad() {
 run_cmake
 build_kicad
 echo "$CMAKE_SETTINGS" > notes/cmake_settings
+echo "$REVNO" > notes/build_revno
+
