@@ -8,6 +8,7 @@ FINAL_DMG_DEST=../dmg
 NOW=`date +%Y%d%m-%H%M%S`
 KICAD_REVNO=abc 
 KICAD_APPS=./bin
+SUPPORT=./support
 PACKAGING_DIR=packaging
 TEMPLATE=kicadtemplate.dmg
 NEW_DMG=kicad.uncompressed.dmg
@@ -51,6 +52,11 @@ if [ -e $MOUNTPOINT/Kicad ]; then
 fi
 mkdir -p $MOUNTPOINT/Kicad
 rsync -al ../$KICAD_APPS/* $MOUNTPOINT/Kicad/. #must preserve symlinks
+
+#copy in support files
+mkdir -p $MOUNTPOINT/kicad
+cp -r ../$SUPPORT/* $MOUNTPOINT/kicad/.
+
 cp README.template $MOUNTPOINT/README
 if [ -e ../notes/build.log ]; then
     cp ../notes/build.log ../notes/build.$NOW.log
@@ -64,21 +70,25 @@ echo "================" >> $MOUNTPOINT/README
 echo "Packaged on $NOW" >> $MOUNTPOINT/README
 echo "KiCad revision: r$KICAD_REVNO" >> $MOUNTPOINT/README
 
+if [ -f ../notes/cmake_settings ]; then 
+    echo "KiCad CMake Settings: `cat ../notes/cmake_settings`" >> $MOUNTPOINT/README
+fi
+
 if [ -f ../notes/kicad_patches ]; then
     echo "KiCad patched with following patches:" >> $MOUNTPOINT/README
     cat ../notes/kicad_patches >> $MOUNTPOINT/README
 fi
 
-if [ -f ../notes/help_revno ]; then
-    echo "Help revision: r`cat ../notes/help_revno`" >>$MOUNTPOINT/README
+if [ -f ../notes/docs_revno ]; then
+    echo "Docs revision: r`cat ../notes/docs_revno`" >> $MOUNTPOINT/README
+fi
+
+if [ -f ../notes/docs_revno ]; then
+    echo "Libraries revision: r`cat ../notes/libs_revno`" >> $MOUNTPOINT/README
 fi
 
 if [ -f ../notes/build_revno ]; then
-    echo "Build script revision: r`cat ../notes/build_revno`" >>$MOUNTPOINT/README
-fi
-
-if [ -f ../notes/cmake_settings ]; then 
-    echo "CMake Settings: `cat ../notes/cmake_settings`" >> $MOUNTPOINT/README
+    echo "Build script revision: r`cat ../notes/build_revno`" >> $MOUNTPOINT/README
 fi
 
 if bzr revno; then
@@ -87,13 +97,26 @@ fi
 
 cp $MOUNTPOINT/README ../notes/ #So we can archive the generated README outside of the DMG as well
 
+
+
 hdiutil detach $MOUNTPOINT
 rm -r $MOUNTPOINT
 if [ -e $FINAL_DMG ] ; then
     rm -r $FINAL_DMG
 fi
-hdiutil convert $NEW_DMG  -format UDZO -imagekey zlib-level=9 -o $FINAL_DMG
+
+#set it so it autoopens on download/mount
+hdiutil attach $NEW_DMG -noautoopen -mountpoint /Volumes/KiCad
+bless /Volumes/Kicad --openfolder /Volumes/KiCad
+hdiutil detach /Volumes/Kicad
+
+
+#compress it
+#hdiutil convert $NEW_DMG  -format UDBZ -imagekey -o $FINAL_DMG #bzip2 based is a little bit smaller, but opens much, much slower.  
+hdiutil convert $NEW_DMG  -format UDZO -imagekey zlib-level=9 -o $FINAL_DMG #This used zlib, and bzip2 based (below) is slower but more compression
 rm $NEW_DMG
 rm $TEMPLATE #it comes from the tar bz2
+
+
 mkdir -p $FINAL_DMG_DEST
 mv $FINAL_DMG $FINAL_DMG_DEST/.

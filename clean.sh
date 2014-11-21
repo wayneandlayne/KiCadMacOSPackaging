@@ -15,3 +15,7 @@ fi
 if [ -d bin ]; then
 	rm -r bin
 fi
+
+if [ -d support ]; then
+	rm -r support
+fi

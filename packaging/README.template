@@ -24,3 +24,7 @@ To help us, please include the details from "About This Build" in this file or t
 
     sw_vers
 
+Uninstalling
+============
+To completely uninstall KiCad, delete the .apps, /Library/Application Support/kicad if it exists, and ~/Library/Application Support/kicad if it exists.
+
