@@ -19,3 +19,7 @@ fi
 if [ -d support ]; then
 	rm -r support
 fi
+
+if [ -d extras ]; then
+	rm -r extras
+fi

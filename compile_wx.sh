@@ -41,7 +41,7 @@ check_wx_patched() {
 		patch -p0 < ../../kicad/patches/wxwidgets-3.0.0_macosx.patch || exit 1
 		patch -p0 < ../../kicad/patches/wxwidgets-3.0.0_macosx_bug_15908.patch || exit 1 
 		patch -p0 < ../../kicad/patches/wxwidgets-3.0.0_macosx_soname.patch || exit 1
-		patch -p0 < ../../wx_patches/wxwidgets-3.0.2_macosx_yosemite.patch || exit 1
+		patch -p0 < ../../kicad/patches/wxwidgets-3.0.2_macosx_yosemite.patch || exit 1
 		patch -p0 < ../../kicad/patches/wxwidgets-3.0.0_macosx_scrolledwindow.patch || exit 1
 		cd -
 	fi	
@@ -75,8 +75,6 @@ check_wx_build() {
 		      --without-liblzma \
 		      --with-macosx-version-min=10.7 \
 		      --enable-universal-binary=i386,x86_64 \
-		      CPPFLAGS="-stdlib=libstdc++" \
-		      LDFLAGS="-stdlib=libstdc++" \
 		      CC=clang \
 		      CXX=clang++
 		make -j$NUM_OF_CORES

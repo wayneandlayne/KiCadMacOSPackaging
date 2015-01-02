@@ -53,6 +53,11 @@ fi
 mkdir -p $MOUNTPOINT/Kicad
 rsync -al ../$KICAD_APPS/* $MOUNTPOINT/Kicad/. #must preserve symlinks
 
+#update background
+cp background.png $MOUNTPOINT/.
+#rehide background file
+SetFile -a V $MOUNTPOINT/background.png
+
 #copy in support files
 mkdir -p $MOUNTPOINT/kicad
 cp -r ../$SUPPORT/* $MOUNTPOINT/kicad/.
@@ -107,9 +112,9 @@ fi
 
 #set it so it autoopens on download/mount
 hdiutil attach $NEW_DMG -noautoopen -mountpoint /Volumes/KiCad
-bless /Volumes/Kicad --openfolder /Volumes/KiCad
-hdiutil detach /Volumes/Kicad
-
+bless /Volumes/KiCad --openfolder /Volumes/KiCad
+#umount /Volumes/KiCad
+hdiutil detach /Volumes/KiCad
 
 #compress it
 #hdiutil convert $NEW_DMG  -format UDBZ -imagekey -o $FINAL_DMG #bzip2 based is a little bit smaller, but opens much, much slower.  

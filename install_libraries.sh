@@ -43,3 +43,11 @@ cd -
 mkdir -p support
 
 cp -r $LIBS_BUILD/output/Library/Application\ Support/kicad/* support/
+if [ -d support/modules ]; then
+    mkdir -p extras
+    if [ -d extras/modules ]; then
+        rm -r extras/modules
+    fi
+    mv support/modules extras/modules
+fi
+

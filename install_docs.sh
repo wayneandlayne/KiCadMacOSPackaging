@@ -52,3 +52,17 @@ mkdir -p support
 
 cp -r $DOCS_BUILD/output/share/doc/kicad/help support/
 cp -r $DOCS_BUILD/output/share/kicad/internat support/
+
+
+#copy a few of the essential pdfs into the bundle
+HELP_SRC=support/help/en
+HELP_DST=bin/kicad.app/Contents/SharedSupport/help/en
+
+if [ -d $HELP_DST ]; then
+	rm -r $HELP_DST
+fi
+
+mkdir -p $HELP_DST
+
+cp -r $HELP_SRC/* $HELP_DST/.
+

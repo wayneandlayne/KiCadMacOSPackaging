@@ -1,5 +1,6 @@
 #!/bin/bash
 
+#TODO: add KIGITHUB environment variable
 set -e
 set -x
 
@@ -14,5 +15,10 @@ cd -
 #cleanup after kicad
 mkdir -p support
 mv bin/freeroute.jnlp support/
+
+if [ -d support/demos ]; then
+    rm -r support/demos
+fi
+
 mv bin/demos support/
 rm -r bin/doc #we do not have scripting support yet
