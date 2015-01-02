@@ -62,45 +62,45 @@ SetFile -a V $MOUNTPOINT/background.png
 mkdir -p $MOUNTPOINT/kicad
 cp -r ../$SUPPORT/* $MOUNTPOINT/kicad/.
 
-cp README.template $MOUNTPOINT/README
+cp README.template $MOUNTPOINT/README.txt
 if [ -e ../notes/build.log ]; then
     cp ../notes/build.log ../notes/build.$NOW.log
     cp ../notes/build.$NOW.log $MOUNTPOINT/build.$NOW.log
 fi
 
 #Update README
-echo "" >> $MOUNTPOINT/README
-echo "About This Build" >> $MOUNTPOINT/README
-echo "================" >> $MOUNTPOINT/README
-echo "Packaged on $NOW" >> $MOUNTPOINT/README
-echo "KiCad revision: r$KICAD_REVNO" >> $MOUNTPOINT/README
+echo "" >> $MOUNTPOINT/README.txt
+echo "About This Build" >> $MOUNTPOINT/README.txt
+echo "================" >> $MOUNTPOINT/README.txt
+echo "Packaged on $NOW" >> $MOUNTPOINT/README.txt
+echo "KiCad revision: r$KICAD_REVNO" >> $MOUNTPOINT/README.txt
 
 if [ -f ../notes/cmake_settings ]; then 
-    echo "KiCad CMake Settings: `cat ../notes/cmake_settings`" >> $MOUNTPOINT/README
+    echo "KiCad CMake Settings: `cat ../notes/cmake_settings`" >> $MOUNTPOINT/README.txt
 fi
 
 if [ -f ../notes/kicad_patches ]; then
-    echo "KiCad patched with following patches:" >> $MOUNTPOINT/README
-    cat ../notes/kicad_patches >> $MOUNTPOINT/README
+    echo "KiCad patched with following patches:" >> $MOUNTPOINT/README.txt
+    cat ../notes/kicad_patches >> $MOUNTPOINT/README.txt
 fi
 
 if [ -f ../notes/docs_revno ]; then
-    echo "Docs revision: r`cat ../notes/docs_revno`" >> $MOUNTPOINT/README
+    echo "Docs revision: r`cat ../notes/docs_revno`" >> $MOUNTPOINT/README.txt
 fi
 
 if [ -f ../notes/docs_revno ]; then
-    echo "Libraries revision: r`cat ../notes/libs_revno`" >> $MOUNTPOINT/README
+    echo "Libraries revision: r`cat ../notes/libs_revno`" >> $MOUNTPOINT/README.txt
 fi
 
 if [ -f ../notes/build_revno ]; then
-    echo "Build script revision: r`cat ../notes/build_revno`" >> $MOUNTPOINT/README
+    echo "Build script revision: r`cat ../notes/build_revno`" >> $MOUNTPOINT/README.txt
 fi
 
 if bzr revno; then
-    echo "Packaging script revision: r`bzr revno`" >> $MOUNTPOINT/README
+    echo "Packaging script revision: r`bzr revno`" >> $MOUNTPOINT/README.txt
 fi
 
-cp $MOUNTPOINT/README ../notes/ #So we can archive the generated README outside of the DMG as well
+cp $MOUNTPOINT/README.txt ../notes/README #So we can archive the generated README outside of the DMG as well
 
 
 

@@ -47,24 +47,24 @@ cp background.png $MOUNTPOINT/.
 #rehide background file
 SetFile -a V $MOUNTPOINT/background.png
 
-cp README.template $MOUNTPOINT/README
+cp README.template $MOUNTPOINT/README.txt
 
 #Update README
-echo "" >> $MOUNTPOINT/README
-echo "About This Build" >> $MOUNTPOINT/README
-echo "================" >> $MOUNTPOINT/README
-echo "Packaged on $NOW" >> $MOUNTPOINT/README
-echo "Library revision: r$REVNO" >> $MOUNTPOINT/README
+echo "" >> $MOUNTPOINT/README.txt
+echo "About This Build" >> $MOUNTPOINT/README.txt
+echo "================" >> $MOUNTPOINT/README.txt
+echo "Packaged on $NOW" >> $MOUNTPOINT/README.txt
+echo "Library revision: r$REVNO" >> $MOUNTPOINT/README.txt
 
 if [ -f ../notes/build_revno ]; then
-    echo "Build script revision: r`cat ../notes/build_revno`" >> $MOUNTPOINT/README
+    echo "Build script revision: r`cat ../notes/build_revno`" >> $MOUNTPOINT/README.txt
 fi
 
 if bzr revno; then
-    echo "Packaging script revision: r`bzr revno`" >> $MOUNTPOINT/README
+    echo "Packaging script revision: r`bzr revno`" >> $MOUNTPOINT/README.txt
 fi
 
-cp $MOUNTPOINT/README ../notes/README.extras #So we can archive the generated README outside of the DMG as well
+cp $MOUNTPOINT/README.txt ../notes/README.extras #So we can archive the generated README outside of the DMG as well
 
 
 hdiutil detach $MOUNTPOINT
