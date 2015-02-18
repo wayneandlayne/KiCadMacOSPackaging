@@ -25,7 +25,7 @@ if [ -z "$REVNO" ]; then
     exit 1
 fi
 
-FINAL_DMG=kicad-extras-r$REVNO.$NOW.dmg
+FINAL_DMG=kicad-extras.$NOW.dmg
 
 cd $PACKAGING_DIR
 tar xf $TEMPLATE.tar.bz2
@@ -40,7 +40,7 @@ if [ -e $MOUNTPOINT/modules ]; then
     rm -r $MOUNTPOINT/modules
 fi
 
-cp -r ../$EXTRAS/modules $MOUNTPOINT/.
+cp -r ../$EXTRAS/* $MOUNTPOINT/.
 
 #update background
 cp background.png $MOUNTPOINT/.
@@ -54,7 +54,7 @@ echo "" >> $MOUNTPOINT/README.txt
 echo "About This Build" >> $MOUNTPOINT/README.txt
 echo "================" >> $MOUNTPOINT/README.txt
 echo "Packaged on $NOW" >> $MOUNTPOINT/README.txt
-echo "Library revision: r$REVNO" >> $MOUNTPOINT/README.txt
+echo "Github libraries copied on: r$REVNO" >> $MOUNTPOINT/README.txt
 
 if [ -f ../notes/build_revno ]; then
     echo "Build script revision: r`cat ../notes/build_revno`" >> $MOUNTPOINT/README.txt
@@ -63,8 +63,6 @@ fi
 if bzr revno; then
     echo "Packaging script revision: r`bzr revno`" >> $MOUNTPOINT/README.txt
 fi
-
-cp $MOUNTPOINT/README.txt ../notes/README.extras #So we can archive the generated README outside of the DMG as well
 
 
 hdiutil detach $MOUNTPOINT

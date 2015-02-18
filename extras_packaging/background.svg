@@ -153,7 +153,7 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.49497475"
-     inkscape:cx="438.51997"
+     inkscape:cx="278.91587"
      inkscape:cy="369.2698"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
@@ -172,7 +172,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -661,5 +661,20 @@
          id="tspan11380"
          x="77.236382"
          y="158.14665">extras</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.58333397px;line-height:125%;font-family:'Courier New';-inkscape-font-specification:'Courier New, Normal';text-align:center;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="92.141663"
+       y="281.48355"
+       id="text4023"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan4033"
+         x="95.314598"
+         y="281.48355">Please open the README for </tspan><tspan
+         sodipodi:role="line"
+         id="tspan4035"
+         x="92.141663"
+         y="294.71271">installation instructions</tspan></text>
   </g>
 </svg>

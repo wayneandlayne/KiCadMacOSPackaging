@@ -4,9 +4,19 @@ KiCad is an EDA software suite for the creation of professional schematics and p
 
 KiCad is a mature EDA software tool under active development by a team of developers and a vibrant user group.
 
+Important Note
+==============
+This is a "nightly" build, which means that it was the most bleeding edge, least tested version of KiCad when it was created.  OS X nightlies are very new, and there are likely issues that have been introduced in the packaging process.  Please let us know if you have any problems so we can work to make them better for everyone.
+
+Also, there is no Python support in the OS X nightlies yet.
+
 Installation
 ============
-To install KiCad, click and drag the two folder icons to the targets pointed at by the arrows.  Inside of /Applications will be a directory called kicad, and inside of that are all the programs in KiCad.  The project manager is the one labeled kicad, and is probably where you want to start.
+To install KiCad, click and drag the two folder icons to the targets pointed at by the arrows.  
+
+After dropping kicad onto Application Support, you may be asked to authenticate with an administrator username and password.  This installs the support files for KiCad for all users on the system.
+
+KiCad is now installed!  Inside of /Applications will be a directory called kicad, and inside of that are all the programs in KiCad.  The project manager is the one labeled kicad, and is probably where you want to start.
 
 Upgrading
 =========
@@ -14,7 +24,7 @@ If you have already installed KiCad, you can upgrade by following the installati
 
 Footprints
 ==========
-KiCad supports many types of footprints, but by default, it is set up to use footprints maintained by KiCad volunteers on Github.  This requires an active internet connection.  Alternatively, you can use these same footprints and install them to your system locally, removing the need for an active internet connection.  These are available in the KiCad Extras DMG (TODO LINK).
+KiCad supports many types of footprints, but by default, it is set up to use footprints maintained by KiCad volunteers on Github.  This requires an active internet connection.  Alternatively, you can use these same footprints and install them to your system locally, removing the need for an active internet connection.  These are available in the KiCad Extras DMG (http://downloads.kicad-pcb.org/osx).
 
 Documentation
 =============

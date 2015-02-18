@@ -2,6 +2,8 @@ This is a set of scripts that Wayne and Layne, LLC uses to provide the nightly a
 
 Some of the things in here that "look weird" are so it works well in our Jenkins cluster.
 
+I have changed my mind about how these scripts work together, but I am holding off refactoring until after the artifacts are released--or they'll never be posted!
+
 Goals
 =====
 1) Users should be able to browse the included help without going inside a bundle.  This is important so they can do things like put the documentation on their tablets or print some of it out.

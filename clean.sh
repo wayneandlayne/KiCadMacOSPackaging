@@ -12,6 +12,14 @@ if [ -d build ]; then
 	rm -r build
 fi
 
+if [ -d build-docs ]; then
+	rm -r build-docs
+fi
+
+if [ -d build-libs ]; then
+	rm -r build-libs
+fi
+
 if [ -d bin ]; then
 	rm -r bin
 fi
