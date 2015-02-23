@@ -24,7 +24,7 @@ check_brew_depends() {
 	echo "Installing dependencies."
 	check_brew
         if ! brew list bzr cmake doxygen wget glew cairo openssl > /dev/null; then
-            brew install bzr cmake doxygen wget glew cairo openssl
+            brew install --build-bottle bzr cmake doxygen wget glew cairo openssl #build-bottle is so it builds for the oldest mac CPU supported by homebrew, which is probably ok for us
         fi
 }
 
