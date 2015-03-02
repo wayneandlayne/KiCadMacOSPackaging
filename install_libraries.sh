@@ -112,7 +112,6 @@ echo "$NOW" > $BASE/notes/libs_revno
 
 echo "success updating libraries from github"
 
-
 cd $BASE
 
 KICAD_LIBRARIES_REPO=$BASE/libraries/github/library-repos/kicad-library
@@ -151,7 +150,7 @@ fi
 mkdir -p extras/modules
 
 #copy in github footprints into extras/modules
-ditto $WORKING_TREES/library-repos/* extras/modules
+ditto $WORKING_TREES/library-repos extras/modules
 
 #copy in the fp-table-lib for local libraries
 cp $KICAD_LIBRARIES_REPO/template/fp-lib-table.for-pretty extras/fp-lib-table
