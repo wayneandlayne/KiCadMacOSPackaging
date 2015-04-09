@@ -5,7 +5,7 @@ set -e
 
 FINAL_DMG=kicad.dmg
 FINAL_DMG_DEST=../dmg
-NOW=`date +%Y%d%m-%H%M%S`
+NOW=`date +%Y%m%d-%H%M%S`
 KICAD_REVNO=abc 
 KICAD_APPS=./bin
 SUPPORT=./support

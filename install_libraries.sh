@@ -30,7 +30,7 @@ listcontains()
     return $ret
 }
 
-NOW=`date +%Y%d%m-%H%M%S`
+NOW=`date +%Y%m%d-%H%M%S`
 
 mkdir -p $BASE/notes
 echo "$NOW" > $BASE/notes/libs_revno

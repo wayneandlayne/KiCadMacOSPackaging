@@ -6,7 +6,7 @@ set -e
 
 FINAL_DMG=kicad.dmg
 FINAL_DMG_DEST=../dmg
-NOW=`date +%Y%d%m-%H%M%S`
+NOW=`date +%Y%m%d-%H%M%S`
 REVNO=abc 
 EXTRAS=extras
 PACKAGING_DIR=extras_packaging
