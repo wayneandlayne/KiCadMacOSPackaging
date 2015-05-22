@@ -22,6 +22,10 @@ fi
 echo "Cleaning tree."
 bzr clean-tree --verbose --force --ignored --unknown --detritus
 bzr revert
+
+echo "Pulling new revisions."
+bzr pull
+
 REVNO=`bzr revno`
 echo "At r$REVNO"
 
