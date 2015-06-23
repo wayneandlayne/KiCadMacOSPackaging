@@ -11,7 +11,7 @@ REVNO=`bzr revno`
 run_cmake() {
 	mkdir -p build
 	cd build
-	cmake $CMAKE_SETTINGS ../$SRC
+	cmake "${CMAKE_CONFIG[@]}" ../$SRC
 	cd -
 }
 
@@ -25,6 +25,16 @@ build_kicad() {
 
 run_cmake
 build_kicad
-echo "$CMAKE_SETTINGS" > notes/cmake_settings
+
+if [ -f notes/cmake_settings ]; then
+  rm notes/cmake_settings
+fi
+
+#for i in ${CMAKE_CONFIG[@]}; do
+#   echo '${i}' >> notes/cmake_settings
+#done
+
+echo "${CMAKE_CONFIG[@]}" > notes/cmake_settings
+
 echo "$REVNO" > notes/build_revno
 
