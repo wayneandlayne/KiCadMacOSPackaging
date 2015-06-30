@@ -6,7 +6,7 @@ set -x
 #./setup.sh
 ./update_kicad.sh
 ./compile_wx.sh
-./compile_kicad.sh
+./compile_kicad.py
 ./install_kicad.sh
 ./install_docs.sh
 ./install_libraries.sh
