@@ -45,7 +45,7 @@ check_wx_patched() {
 		patch -p0 < ../../kicad/patches/wxwidgets-3.0.0_macosx_scrolledwindow.patch || exit 1
 		patch -p0 < ../../kicad/patches/wxwidgets-3.0.2_macosx_retina_opengl.patch || exit 1
 		patch -p0 < ../../kicad/patches/wxwidgets-3.0.2_macosx_magnify_event.patch || exit 1
-
+		patch -p0 < ../../kicad/patches/wxwidgets-3.0.2_macosx_data_view_ctrl.patch || exit 1
 		cd -
 	fi	
 }
