@@ -3,7 +3,7 @@
 set -e
 set -x
 
-#./setup.sh
+./setup.sh
 ./update_from_bzr.sh
 ./compile_wx.sh
 ./compile_kicad.py
