@@ -4,7 +4,7 @@ set -e
 set -x
 
 #./setup.sh
-./update_kicad.sh
+./update_from_bzr.sh
 ./compile_wx.sh
 ./compile_kicad.py
 ./install_kicad.sh
