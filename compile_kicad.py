@@ -44,6 +44,7 @@ def run_cmake():
 
 
 def build_kicad():
+    os.makedirs("build")
     os.chdir("build")
     cmd = ["make", "-j" + str(NUM_OF_CORES)]
     subprocess.check_call(cmd)
