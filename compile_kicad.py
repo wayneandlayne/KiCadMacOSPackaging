@@ -30,7 +30,7 @@ CMAKE_SETTINGS = ["-DDEFAULT_INSTALL_PATH=/Library/Application Support/kicad",
 
 
 def run_cmake():
-    shutil.rmtree("build")
+    shutil.rmtree("build", ignore_error=True)
     os.makedirs("build")
     os.chdir("build")
     cmd = ["cmake"]
@@ -44,7 +44,6 @@ def run_cmake():
 
 
 def build_kicad():
-    os.makedirs("build")
     os.chdir("build")
     cmd = ["make", "-j" + str(NUM_OF_CORES)]
     subprocess.check_call(cmd)
