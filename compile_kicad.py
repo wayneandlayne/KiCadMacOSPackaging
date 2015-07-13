@@ -30,7 +30,7 @@ CMAKE_SETTINGS = ["-DDEFAULT_INSTALL_PATH=/Library/Application Support/kicad",
 
 
 def run_cmake():
-    shutil.rmtree("build", ignore_error=True)
+    shutil.rmtree("build", ignore_errors=True)
     os.makedirs("build")
     os.chdir("build")
     cmd = ["cmake"]
