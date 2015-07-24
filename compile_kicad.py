@@ -26,7 +26,7 @@ CMAKE_SETTINGS = ["-DDEFAULT_INSTALL_PATH=/Library/Application Support/kicad",
                   "-DKICAD_SCRIPTING_MODULES=ON",
                   "-DKICAD_SCRIPTING_WXPYTHON=ON",
                   "-DPYTHON_EXECUTABLE=" + which("python"),
-                  "-DPYTHON_SITE_PACKAGE_PATH=wx/wx-bin/lib/python2.7/site-packages",
+                  "-DPYTHON_SITE_PACKAGE_PATH=" + os.path.realpath("wx/wx-bin/lib/python2.7/site-packages"),
                   "-DCMAKE_INSTALL_PREFIX=../bin",
                   "-DCMAKE_BUILD_TYPE=Release"]
 
