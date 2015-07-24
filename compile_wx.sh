@@ -2,9 +2,9 @@
 
 NUM_OF_CORES=7
 
-WX_SRC_URL="http://downloads.sourceforge.net/project/wxwindows/3.0.2/wxWidgets-3.0.2.tar.bz2?r=http%3A%2F%2Fwww.wxwidgets.org%2Fdownloads%2F&ts=1412609411&use_mirror=superb-dca2"
-WX_SRC_NAME=wxWidgets-3.0.2.tar.bz2
-WX_SRC_ORIG_DIR=wx-src-orig
+WX_SRC_URL="http://downloads.sourceforge.net/project/wxpython/wxPython/3.0.2.0/wxPython-src-3.0.2.0.tar.bz2?r=http%3A%2F%2Fwww.wxpython.org%2Fdownload.php&ts=1425049283&use_mirror=iweb"
+WX_SRC_NAME=wxPython-src-3.0.2.0.tar.bz2
+WX_SRC_ORIG_DIR=wxpython-src-orig
 
 check_wx_download() {
 	if [ ! -f $WX_SRC_NAME ]; then
@@ -43,9 +43,6 @@ check_wx_patched() {
 		patch -p0 < ../../kicad/patches/wxwidgets-3.0.0_macosx_soname.patch || exit 1
 		patch -p0 < ../../kicad/patches/wxwidgets-3.0.2_macosx_yosemite.patch || exit 1
 		patch -p0 < ../../kicad/patches/wxwidgets-3.0.0_macosx_scrolledwindow.patch || exit 1
-		patch -p0 < ../../kicad/patches/wxwidgets-3.0.2_macosx_retina_opengl.patch || exit 1
-		patch -p0 < ../../kicad/patches/wxwidgets-3.0.2_macosx_magnify_event.patch || exit 1
-		#patch -p0 < ../../kicad/patches/wxwidgets-3.0.2_macosx_data_view_ctrl.patch || exit 1
 		cd -
 	fi	
 }
@@ -62,6 +59,7 @@ check_wx_build() {
 		fi
 		mkdir wx-build
 		cd wx-build
+		export MAC_OS_X_VERSION_MIN_REQUIRED=10.7 
 		../wx-src/configure \
 		      --prefix=`pwd`/../wx-bin \
 		      --with-opengl \
@@ -90,7 +88,36 @@ check_wx_build() {
 			exit 1
 		fi
 	fi	
-        cd -
+        cd ..
 }
 
+check_wxpython_build() {
+    cd wx
+    if [ -d wx-bin/lib/python2.7/site-packages ]; then
+        echo "Skipping building wxPython because lib/python2.7/sitepackages exists."
+    else
+            cd  wx-src/wxPython
+    
+            export MAC_OS_X_VERSION_MIN_REQUIRED=10.7 
+            # build params
+            WXPYTHON_BUILD_OPTS="WX_CONFIG=`pwd`/../../wx-bin/bin/wx-config \
+            BUILD_BASE=`pwd`/../../wx-build \
+            UNICODE=1 \
+            WXPORT=osx_cocoa"
+
+            WXPYTHON_PREFIX="--prefix=`pwd`/../../wx-bin"
+	    python setup.py build_ext $WXPYTHON_BUILD_OPTS
+	if [ $? == 0 ]; then
+    	# install
+	    python setup.py install $WXPYTHON_PREFIX $WXPYTHON_BUILD_OPTS
+	else
+    	    cd -
+       	    exit 1
+        fi
+    fi
+    cd -
+}
+
+
 check_wx_build
+check_wxpython_build

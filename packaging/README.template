@@ -8,7 +8,7 @@ Important Note
 ==============
 This is a "nightly" build, which means that it was the most bleeding edge, least tested version of KiCad when it was created.  OS X nightlies are very new, and there are likely issues that have been introduced in the packaging process.  Please let us know if you have any problems so we can work to make them better for everyone.
 
-Also, there is no Python support in the OS X nightlies yet.
+The Python support in the KiCad nightlies is preliminary.
 
 Installation
 ============
@@ -36,7 +36,7 @@ You can browse the changelog at https://bazaar.launchpad.net/~kicad-product-comm
 
 Reporting Issues
 ================
-The KiCad developers are working hard to provide quality, binary releases to our users.  As of January 2015, the OS X package is under heavy, active development.
+The KiCad developers are working hard to provide quality, binary releases to our users.  As of July 2015, the OS X package is under heavy, active development.
 
 If you encounter issues with this software, please report a bug at https://bugs.launchpad.net/kicad.
 
