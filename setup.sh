@@ -23,8 +23,10 @@ check_brew() {
 check_brew_depends() {
 	echo "Installing dependencies."
 	check_brew
-        if ! brew list bzr cmake doxygen wget glew cairo openssl > /dev/null; then
-            brew install --build-bottle pixman bzr cmake doxygen wget glew cairo openssl #build-bottle is so it builds for the oldest mac CPU supported by homebrew, which is probably ok for us
+        if ! brew list gettext bzr cmake doxygen wget glew cairo openssl > /dev/null; then
+            brew install --build-bottle gettext swig pixman bzr cmake doxygen wget glew cairo openssl #build-bottle is so it builds for the oldest mac CPU supported by homebrew, which is probably ok for us
+
+	# You also need git, but if you have brew, you have git.
         fi
 }
 
@@ -49,7 +51,7 @@ check_bzrtools() {
 		echo "bzr patch appears to work."
 	fi
 }
-
+		
 check_compiler
 check_brew
 check_brew_depends

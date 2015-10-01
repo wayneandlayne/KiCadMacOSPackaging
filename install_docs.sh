@@ -4,35 +4,23 @@ set -e
 set -x
 
 BASE=`pwd`
-DOCS_DIR=doc
-DOCS_BZR=lp:~kicad-developers/kicad/doc
 DOCS_BUILD=build-docs
 
-mkdir -p $DOCS_BUILD
-cd $DOCS_BUILD
-if [ -d output ]; then
-    rm -r output;
+if [ ! -d $DOCS_BUILD/help ]; then
+	echo "I am building docs on Linux and copying the files into $DOCS_BUILD."
+        echo "Once you put the help files there, rerun this script."
+	exit 1
 fi
-mkdir -p output
-cmake -DCMAKE_INSTALL_PREFIX=output ../$DOCS_DIR 
-make install
-cd -
-
 
 if [ -d support/help ]; then
     rm -r support/help
 fi
-if [ -d support/internat ]; then
-    rm -r support/internat
-fi
 
 mkdir -p support
 
-cp -r $DOCS_BUILD/output/share/doc/kicad/help support/
-cp -r $DOCS_BUILD/output/share/kicad/internat support/
+cp -r $DOCS_BUILD//help support/
 
-
-#copy a few of the essential pdfs into the bundle
+#copy the essential pdfs into the bundle
 HELP_SRC=support/help/en
 HELP_DST=bin/kicad.app/Contents/SharedSupport/help/en
 
