@@ -6,7 +6,7 @@ KiCad is a mature EDA software tool under active development by a team of develo
 
 Important Note
 ==============
-This is a "nightly" build, which means that it was the most bleeding edge, least tested version of KiCad when it was created.  OS X nightlies are very new, and there are likely issues that have been introduced in the packaging process.  Please let us know if you have any problems so we can work to make them better for everyone.
+This is a "nightly" build, which means that it was the most bleeding edge, least tested version of KiCad when it was created.  Please let us know if you have any problems so we can work to make them better for everyone.
 
 The Python support in the KiCad nightlies is preliminary.
 
