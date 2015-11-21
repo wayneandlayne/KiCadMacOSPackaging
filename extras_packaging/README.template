@@ -17,12 +17,8 @@ Additionally, you need to configure your library table.  This DMG includes a lib
 
 At this point, if you open (or reopen, if it was already open) PCBNew, you should be able to browse and add footprints without needing internet access.
 
-Important Note
-==============
-OS X nightly packages are very new, and there are likely issues that have been introduced in the packaging process.  Please let us know if you have any problems so we can work to make them better for everyone.
-
 Reporting Issues
 ================
-The KiCad developers are working hard to provide quality, binary releases to our users.  As of February 2015, the OS X package is under heavy, active development.
+The KiCad developers are working hard to provide quality, binary releases to our users.  Please let us know if you have any problems so we can work to make them better for everyone.
 
 If you encounter issues with this software, please report a bug at https://bugs.launchpad.net/kicad.
