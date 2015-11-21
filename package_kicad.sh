@@ -62,6 +62,22 @@ SetFile -a V $MOUNTPOINT/background.png
 mkdir -p $MOUNTPOINT/kicad
 cp -r ../$SUPPORT/* $MOUNTPOINT/kicad/.
 
+
+#support/modules is in the base package
+#extras/modules is in the extras package
+#packages3d is going to move, probably, after 4.0.0, but
+#right now, due to OSX packaging stuff, we put it parallel to
+#modules, not inside modules
+
+#this causes a problem with defaults, and changing the default
+#was ugly, so we're going to do something way, way uglier here
+# we are going to make modules, and put a symlink to ../packages3d there
+# and we are going to do it inside of extras/modules too.
+mkdir -p $MOUNTPOINT/kicad/modules
+cd $MOUNTPOINT/kicad/modules
+ln -s ../packages3d
+cd -
+
 cp README.template $MOUNTPOINT/README.txt
 if [ -e ../notes/build.log ]; then
     cp ../notes/build.log ../notes/build.$NOW.log
