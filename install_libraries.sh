@@ -51,7 +51,9 @@ echo "$NOW" > $BASE/notes/libs_revno
 
     # Use github API to list repos for org KiCad, then subset the JSON reply for only
     # *.pretty repos
-    PRETTY_REPOS=`curl https://api.github.com/orgs/KiCad/repos?per_page=2000 2> /dev/null \
+
+    PRETTY_REPOS=`curl -s "https://api.github.com/orgs/KiCad/repos?per_page=99&page=1" \
+        "https://api.github.com/orgs/KiCad/repos?per_page=100&page=99" 2> /dev/null \
         | grep full_name | grep pretty \
         | sed $SED_EREGEXP 's:.+ "KiCad/(.+)",:\1:'`
 

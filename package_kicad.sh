@@ -76,6 +76,7 @@ cp -r ../$SUPPORT/* $MOUNTPOINT/kicad/.
 mkdir -p $MOUNTPOINT/kicad/modules
 cd $MOUNTPOINT/kicad/modules
 ln -s ../packages3d
+echo "KiCad uses footprints from Github.  These have been packaged for offline use, and can be added using the kicad-extras dmg at https://download.kicad-pcb.org/osx" > README
 cd -
 
 cp README.template $MOUNTPOINT/README.txt
