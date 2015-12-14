@@ -135,7 +135,7 @@ hdiutil detach /Volumes/KiCad
 
 #compress it
 #hdiutil convert $NEW_DMG  -format UDBZ -imagekey -o $FINAL_DMG #bzip2 based is a little bit smaller, but opens much, much slower.  
-hdiutil convert $NEW_DMG  -format UDZO -imagekey zlib-level=9 -o $FINAL_DMG #This used zlib, and bzip2 based (below) is slower but more compression
+hdiutil convert $NEW_DMG  -format UDZO -imagekey zlib-level=9 -o $FINAL_DMG #This used zlib, and bzip2 based (above) is slower but more compression
 rm $NEW_DMG
 rm $TEMPLATE #it comes from the tar bz2
 
