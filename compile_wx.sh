@@ -38,11 +38,13 @@ check_wx_patched() {
 		check_wx_orig
 		cp -r $WX_SRC_ORIG_DIR wx-src
 		cd wx-src
-		patch -p0 < ../../kicad/patches/wxwidgets-3.0.0_macosx.patch || exit 1
-		patch -p0 < ../../kicad/patches/wxwidgets-3.0.0_macosx_bug_15908.patch || exit 1 
-		patch -p0 < ../../kicad/patches/wxwidgets-3.0.0_macosx_soname.patch || exit 1
-		patch -p0 < ../../kicad/patches/wxwidgets-3.0.2_macosx_yosemite.patch || exit 1
-		patch -p0 < ../../kicad/patches/wxwidgets-3.0.0_macosx_scrolledwindow.patch || exit 1
+		patch -p0 < wx_patches/wxwidgets-3.0.0_macosx.patch || exit 1
+		patch -p0 < wx_patches/wxwidgets-3.0.0_macosx_bug_15908.patch || exit 1 
+		patch -p0 < wx_patches/wxwidgets-3.0.0_macosx_soname.patch || exit 1
+		patch -p0 < wx_patches/wxwidgets-3.0.2_macosx_yosemite.patch || exit 1
+		patch -p0 < wx_patches/wxwidgets-3.0.0_macosx_scrolledwindow.patch || exit 1
+		patch -p0 < wx_patches/wxwidgets-3.0.2_macosx_retina_opengl.patch || exit 1
+		patch -p0 < wx_patches/wxwidgets-3.0.2_macosx_magnify_event.patch || exit 1
 		cd -
 	fi	
 }
@@ -75,7 +77,6 @@ check_wx_build() {
 		      --with-expat=builtin \
 		      --without-liblzma \
 		      --with-macosx-version-min=10.7 \
-		      --enable-universal-binary=i386,x86_64 \
 		      CC=clang \
 		      CXX=clang++
 		make -j$NUM_OF_CORES
