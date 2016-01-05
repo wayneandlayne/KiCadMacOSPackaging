@@ -38,13 +38,13 @@ check_wx_patched() {
 		check_wx_orig
 		cp -r $WX_SRC_ORIG_DIR wx-src
 		cd wx-src
-		patch -p0 < wx_patches/wxwidgets-3.0.0_macosx.patch || exit 1
-		patch -p0 < wx_patches/wxwidgets-3.0.0_macosx_bug_15908.patch || exit 1 
-		patch -p0 < wx_patches/wxwidgets-3.0.0_macosx_soname.patch || exit 1
-		patch -p0 < wx_patches/wxwidgets-3.0.2_macosx_yosemite.patch || exit 1
-		patch -p0 < wx_patches/wxwidgets-3.0.0_macosx_scrolledwindow.patch || exit 1
-		patch -p0 < wx_patches/wxwidgets-3.0.2_macosx_retina_opengl.patch || exit 1
-		patch -p0 < wx_patches/wxwidgets-3.0.2_macosx_magnify_event.patch || exit 1
+		patch -p0 < ../../wx_patches/wxwidgets-3.0.0_macosx.patch || exit 1
+		patch -p0 < ../../wx_patches/wxwidgets-3.0.0_macosx_bug_15908.patch || exit 1 
+		patch -p0 < ../../wx_patches/wxwidgets-3.0.0_macosx_soname.patch || exit 1
+		patch -p0 < ../../wx_patches/wxwidgets-3.0.2_macosx_yosemite.patch || exit 1
+		patch -p0 < ../../wx_patches/wxwidgets-3.0.0_macosx_scrolledwindow.patch || exit 1
+		patch -p0 < ../../wx_patches/wxwidgets-3.0.2_macosx_retina_opengl.patch || exit 1
+		patch -p0 < ../../wx_patches/wxwidgets-3.0.2_macosx_magnify_event.patch || exit 1
 		cd -
 	fi	
 }
