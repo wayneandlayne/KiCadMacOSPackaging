@@ -33,5 +33,5 @@ if [ -d support/internat ]; then
 fi
 
 mkdir -p support
-
-cp -r $I18N_BUILD/output/share/kicad/internat support/
+mkdir -p support/share
+cp -r $I18N_BUILD/output/share/kicad/internat support/share/
