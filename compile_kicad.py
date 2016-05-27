@@ -19,7 +19,7 @@ def which(program_name):
 CMAKE_SETTINGS = ["-DDEFAULT_INSTALL_PATH=/Library/Application Support/kicad",
                   "-DCMAKE_C_COMPILER=" + which("clang"),
                   "-DCMAKE_CXX_COMPILER=" + which("clang++"),
-                  "-DCMAKE_OSX_SYSROOT=" + os.path.join(os.getcwd(), "MacOSX10.9.sdk"),
+                  "-DCMAKE_OSX_SYSROOT=" + os.path.join(os.getcwd(), "MacOSX10.11.sdk"),
                   "-DCMAKE_OSX_DEPLOYMENT_TARGET=10.9",
                   "-DwxWidgets_CONFIG_EXECUTABLE=../wx/wx-bin/bin/wx-config",
                   "-DKICAD_SCRIPTING=ON",
