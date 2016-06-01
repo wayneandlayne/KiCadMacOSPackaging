@@ -4,6 +4,8 @@ KiCad is an EDA software suite for the creation of professional schematics and p
 
 KiCad is a mature EDA software tool under active development by a team of developers and a vibrant user group.
 
+KiCad currently supports OS X 10.9-10.11.
+
 Important Note
 ==============
 This is a "nightly" build, which means that it was the most bleeding edge, least tested version of KiCad when it was created.  Please let us know if you have any problems so we can work to make them better for everyone.
