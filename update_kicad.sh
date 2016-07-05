@@ -21,7 +21,7 @@ fi
 
 echo "Cleaning tree."
 bzr clean-tree --verbose --force --ignored --unknown --detritus
-bzr revert
+bzr revert -r6963
 
 echo "Pulling new revisions."
 bzr pull
