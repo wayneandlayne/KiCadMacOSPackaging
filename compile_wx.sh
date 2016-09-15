@@ -99,7 +99,7 @@ check_wxpython_build() {
     else
             cd  wx-src/wxPython
     
-            export MAC_OS_X_VERSION_MIN_REQUIRED=10.9 
+            export MAC_OS_X_VERSION_MIN_REQUIRED=10.9
             # build params
             WXPYTHON_BUILD_OPTS="WX_CONFIG=`pwd`/../../wx-bin/bin/wx-config \
             BUILD_BASE=`pwd`/../../wx-build \

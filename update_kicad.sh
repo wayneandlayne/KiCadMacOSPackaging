@@ -7,27 +7,22 @@ BASE=`pwd`
 SRC=kicad
 
 if [ ! -d $SRC ]; then
-	bzr branch lp:kicad $SRC
+    git clone https://git.launchpad.net/kicad 
 fi
 
-cd $SRC
-#check to make sure the SRC is actually kicad
-if ! bzr info | grep "parent branch: bzr+ssh://bazaar.launchpad.net/+branch/kicad/$"; then
-    if ! bzr info | grep "parent branch: http://bazaar.launchpad.net/~kicad-product-committers/kicad/product/$"; then
-        echo "$SRC is not KiCad?.  Exiting."
-        exit 1 
-    fi
-fi
+cd kicad
 
 echo "Cleaning tree."
-bzr clean-tree --verbose --force --ignored --unknown --detritus
-bzr revert
+git clean -fd
+git reset --hard HEAD
 
 echo "Pulling new revisions."
-bzr pull
+git checkout master
+git pull
 
-REVNO=`bzr revno`
+REVNO=`git rev-parse --short HEAD`
 echo "At r$REVNO"
+cd -
 
 mkdir -p $BASE/notes
 echo "$REVNO" > $BASE/notes/kicad_revno

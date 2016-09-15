@@ -21,7 +21,7 @@ elif [ -e notes/kicad_revno ]; then
 fi
   
 if [ -z "$KICAD_REVNO" ]; then
-    echo "First argument represents KiCad bzr revno, and must be completely numeric."
+    echo "First argument represents KiCad revno, and must be completely numeric."
     exit 1
 fi
 

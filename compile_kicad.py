@@ -6,9 +6,8 @@ import shutil
 NUM_OF_CORES = 6
 
 
-def get_bzr_revno():
-    revno = subprocess.check_output(["bzr", "revno"])
-    revno = int(revno)
+def get_git_shortsha():
+    revno = subprocess.check_output(["git", "rev-parse", '--short', 'HEAD'], cwd="kicad")
     return revno
 
 
@@ -19,7 +18,7 @@ def which(program_name):
 CMAKE_SETTINGS = ["-DDEFAULT_INSTALL_PATH=/Library/Application Support/kicad",
                   "-DCMAKE_C_COMPILER=" + which("clang"),
                   "-DCMAKE_CXX_COMPILER=" + which("clang++"),
-                  "-DCMAKE_OSX_SYSROOT=" + os.path.join(os.getcwd(), "MacOSX10.11.sdk"),
+                  "-DCMAKE_OSX_SYSROOT=" + os.path.join(os.getcwd(), "MacOSX10.9.sdk"),
                   "-DCMAKE_OSX_DEPLOYMENT_TARGET=10.9",
                   "-DwxWidgets_CONFIG_EXECUTABLE=../wx/wx-bin/bin/wx-config",
                   "-DKICAD_SCRIPTING=ON",
@@ -52,15 +51,15 @@ def build_kicad():
     os.chdir("..")
 
 def compile_kicad():
-    revno = get_bzr_revno()
-    print revno
+    shortsha = get_git_shortsha()
+    print shortsha
     run_cmake()
     build_kicad()
 
     with open("notes/cmake_settings", "w") as cmake_settings_log:
         cmake_settings_log.write("\n".join(CMAKE_SETTINGS))
     with open("notes/build_revno", "w") as build_revno_log:
-        build_revno_log.write(str(revno))
+        build_revno_log.write(shortsha)
 
 
 if __name__ == "__main__":

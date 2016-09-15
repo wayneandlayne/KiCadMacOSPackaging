@@ -23,36 +23,13 @@ check_brew() {
 check_brew_depends() {
 	echo "Installing dependencies."
 	check_brew
-        if ! brew list gettext bzr cmake doxygen wget glew cairo openssl > /dev/null; then
-            brew install --build-bottle gettext swig pixman bzr cmake doxygen wget glew cairo openssl #build-bottle is so it builds for the oldest mac CPU supported by homebrew, which is probably ok for us
+        if ! brew list gettext cmake doxygen wget glew cairo openssl > /dev/null; then
+            brew install --build-bottle gettext swig pixman  cmake doxygen wget glew cairo openssl #build-bottle is so it builds for the oldest mac CPU supported by homebrew, which is probably ok for us
 
 	# You also need git, but if you have brew, you have git.
         fi
 }
 
-check_bzrtools() {
-	echo "Testing for bzrtools (patch command)"
-	PATCH_RESULTS=`bzr patch --help 2>&1` || true
-	if echo $PATCH_RESULTS | grep 'ERROR: unknown command "patch"' > /dev/null; then
-		echo "bzr patch doesn't appear to work."
-		echo "Installing bzrtools to ~/.bazaar/plugins"
-    		wget -O /tmp/bzrtools.tar.gz https://launchpad.net/bzrtools/stable/2.6.0/+download/bzrtools-2.6.0.tar.gz
-    		mkdir -p ~/.bazaar/plugins/
-		echo "Extracting bzrtools to bzr's plugins directory."
-    		tar zxf /tmp/bzrtools.tar.gz -C ~/.bazaar/plugins/
-		PATCH_RESULTS=`bzr patch --help 2>&1`
-		if echo $PATCH_RESULTS | grep 'ERROR: unknown command "patch"' > /dev/null; then
-			echo "bzr patch still doesn't appear to work.  Exiting!"
-			exit 1
-		else
-			echo "bzr patch installed."
-		fi
-	else
-		echo "bzr patch appears to work."
-	fi
-}
-		
 check_compiler
 check_brew
 check_brew_depends
-check_bzrtools
