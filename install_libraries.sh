@@ -133,7 +133,7 @@ cd $BASE
 mkdir -p support
 
 #copy everything into support
-cp -r $LIBS_BUILD/output/Library/Application\ Support/kicad/* support/
+cp -r $LIBS_BUILD/output/* support/
 
 #modules is special
 if [ -d support/modules/packages3d ]; then

@@ -25,7 +25,7 @@ if [ -z "$REVNO" ]; then
     exit 1
 fi
 
-FINAL_DMG=kicad-extras.$NOW.dmg
+FINAL_DMG=kicad-extras.$NOW-c4osx.dmg
 
 cd $PACKAGING_DIR
 tar xf $TEMPLATE.tar.bz2

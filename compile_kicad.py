@@ -3,7 +3,7 @@ import os
 import subprocess
 import shutil
 
-NUM_OF_CORES = 6
+NUM_OF_CORES = 8
 
 
 def get_git_shortsha():
@@ -18,16 +18,21 @@ def which(program_name):
 CMAKE_SETTINGS = ["-DDEFAULT_INSTALL_PATH=/Library/Application Support/kicad",
                   "-DCMAKE_C_COMPILER=" + which("clang"),
                   "-DCMAKE_CXX_COMPILER=" + which("clang++"),
-                  "-DCMAKE_OSX_SYSROOT=" + os.path.join(os.getcwd(), "MacOSX10.9.sdk"),
+                  "-DCMAKE_OSX_SYSROOT=/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.11.sdk",
                   "-DCMAKE_OSX_DEPLOYMENT_TARGET=10.9",
                   "-DwxWidgets_CONFIG_EXECUTABLE=../wx/wx-bin/bin/wx-config",
                   "-DKICAD_SCRIPTING=ON",
                   "-DKICAD_SCRIPTING_MODULES=ON",
                   "-DKICAD_SCRIPTING_WXPYTHON=ON",
+                  "-DKICAD_SCRIPTING_ACTION_MENU=ON",
                   "-DPYTHON_EXECUTABLE=" + which("python"),
                   "-DPYTHON_SITE_PACKAGE_PATH=" + os.path.realpath("wx/wx-bin/lib/python2.7/site-packages"),
+                  "-DKICAD_USE_OCE=ON",
+                  "-DOCE_DIR=/Users/kicad/homebrew/opt/oce/OCE.framework/Versions/0.17/Resources/",
+                  "-DKICAD_SPICE=ON",
+                  "-DKICAD_REPO_NAME=maser-c4osx",
                   "-DCMAKE_INSTALL_PREFIX=../bin",
-                  "-DCMAKE_BUILD_TYPE=Release"]
+                  "-DCMAKE_BUILD_TYPE=RelWithDebInfo"]
 
 
 def run_cmake():
