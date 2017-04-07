@@ -12,7 +12,8 @@ check_compiler() {
 }
 
 check_brew() {
-	if [ ! -e /usr/local/bin/brew ]; then
+	which brew
+	if [ $? -ne 0 ]; then
 		echo "It doesn't look like brew is installed."
 		echo "You can probably use MacPorts or something, but this script uses brew."
 		echo "To install brew, go to http://brew.sh and follow the simple instructions there."

@@ -25,7 +25,7 @@ if [ -z "$KICAD_REVNO" ]; then
     exit 1
 fi
 
-FINAL_DMG=kicad-r$KICAD_REVNO.$NOW.dmg
+FINAL_DMG=kicad-$NOW.$KICAD_REVNO-c4osx.dmg
 
 
 if [ ! -d $KICAD_APPS ]; then
@@ -45,6 +45,7 @@ if [ -e $MOUNTPOINT ]; then
     rm -r $MOUNTPOINT
 fi
 mkdir -p $MOUNTPOINT
+hdiutil resize -size 5G $NEW_DMG
 hdiutil attach $NEW_DMG -noautoopen -mountpoint $MOUNTPOINT
 
 if [ -e $MOUNTPOINT/Kicad ]; then
