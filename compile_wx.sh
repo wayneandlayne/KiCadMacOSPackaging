@@ -42,6 +42,7 @@ check_wx_patched() {
 		patch -p0 < ../../wx_patches/wxwidgets-3.0.0_macosx_bug_15908.patch || exit 1 
 		patch -p0 < ../../wx_patches/wxwidgets-3.0.0_macosx_soname.patch || exit 1
 		patch -p0 < ../../wx_patches/wxwidgets-3.0.2_macosx_yosemite.patch || exit 1
+		patch -p0 < ../../wx_patches/wxwidgets-3.0.2_macosx_sierra.patch || exit 1
 		patch -p0 < ../../wx_patches/wxwidgets-3.0.0_macosx_scrolledwindow.patch || exit 1
 		patch -p0 < ../../wx_patches/wxwidgets-3.0.2_macosx_retina_opengl.patch || exit 1
 		patch -p0 < ../../wx_patches/wxwidgets-3.0.2_macosx_magnify_event.patch || exit 1
