@@ -70,6 +70,7 @@ check_wx_build() {
 		      --enable-utf8 \
 		      --enable-html \
 		      --enable-stl \
+                      --disable-mediactrl \
 		      --with-libjpeg=builtin \
 		      --with-libpng=builtin \
 		      --with-regex=builtin \
