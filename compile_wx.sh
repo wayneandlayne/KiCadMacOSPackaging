@@ -62,7 +62,7 @@ check_wx_build() {
 		fi
 		mkdir wx-build
 		cd wx-build
-		export MAC_OS_X_VERSION_MIN_REQUIRED=10.9
+		export MAC_OS_X_VERSION_MIN_REQUIRED=10.12
 		../wx-src/configure \
 		      --prefix=`pwd`/../wx-bin \
 		      --with-opengl \
@@ -77,7 +77,7 @@ check_wx_build() {
 		      --with-zlib=builtin \
 		      --with-expat=builtin \
 		      --without-liblzma \
-		      --with-macosx-version-min=10.9 \
+		      --with-macosx-version-min=10.12 \
 		      CC=clang \
 		      CXX=clang++
 		make -j$NUM_OF_CORES
@@ -100,7 +100,7 @@ check_wxpython_build() {
     else
             cd  wx-src/wxPython
     
-            export MAC_OS_X_VERSION_MIN_REQUIRED=10.9
+            export MAC_OS_X_VERSION_MIN_REQUIRED=10.12
             # build params
             WXPYTHON_BUILD_OPTS="WX_CONFIG=`pwd`/../../wx-bin/bin/wx-config \
             BUILD_BASE=`pwd`/../../wx-build \
