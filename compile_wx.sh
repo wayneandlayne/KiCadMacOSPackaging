@@ -6,6 +6,8 @@ WX_SRC_URL="http://downloads.sourceforge.net/project/wxpython/wxPython/3.0.2.0/w
 WX_SRC_NAME=wxPython-src-3.0.2.0.tar.bz2
 WX_SRC_ORIG_DIR=wxpython-src-orig
 WX_FORK_DIR=wxWidgets
+WX_FORK_BRANCH=kicad/macos-wx-3.0
+
 
 check_wx_download() {
 	if [ ! -f $WX_SRC_NAME ]; then
@@ -17,7 +19,7 @@ check_wx_download() {
 
         if [ ! -d $WX_FORK_DIR ]; then
                 echo "Downloading the wxwidgets fork"
-		git clone --recurse-submodules https://github.com/KiCad/wxWidgets.git
+		git clone --recurse-submodules -b $WX_FORK_BRANCH https://github.com/KiCad/wxWidgets.git
         fi
 }
 
