@@ -5,6 +5,9 @@ NUM_OF_CORES=7
 WX_SRC_URL="http://downloads.sourceforge.net/project/wxpython/wxPython/3.0.2.0/wxPython-src-3.0.2.0.tar.bz2?r=http%3A%2F%2Fwww.wxpython.org%2Fdownload.php&ts=1425049283&use_mirror=iweb"
 WX_SRC_NAME=wxPython-src-3.0.2.0.tar.bz2
 WX_SRC_ORIG_DIR=wxpython-src-orig
+WX_FORK_DIR=wxWidgets
+WX_FORK_BRANCH=kicad/macos-wx-3.0
+
 
 check_wx_download() {
 	if [ ! -f $WX_SRC_NAME ]; then
@@ -13,6 +16,11 @@ check_wx_download() {
 	else
 		echo "Skipping $WX_SRC_NAME download because it is already here."
 	fi
+
+        if [ ! -d $WX_FORK_DIR ]; then
+                echo "Downloading the wxwidgets fork"
+		git clone --recurse-submodules -b $WX_FORK_BRANCH https://github.com/KiCad/wxWidgets.git
+        fi
 }
 
 check_wx_orig() {
@@ -31,24 +39,12 @@ check_wx_orig() {
 	fi
 }
 
-check_wx_patched() {
-	if [ -d wx-src ]; then
-		echo "Skipping the patching of wx-src because wx-src exists."
-	else
-		check_wx_orig
-		cp -r $WX_SRC_ORIG_DIR wx-src
-		cd wx-src
-		patch -p0 < ../../wx_patches/wxwidgets-3.0.0_macosx.patch || exit 1
-		patch -p0 < ../../wx_patches/wxwidgets-3.0.0_macosx_bug_15908.patch || exit 1 
-		patch -p0 < ../../wx_patches/wxwidgets-3.0.0_macosx_soname.patch || exit 1
-		patch -p0 < ../../wx_patches/wxwidgets-3.0.2_macosx_yosemite.patch || exit 1
-		patch -p0 < ../../wx_patches/wxwidgets-3.0.0_macosx_scrolledwindow.patch || exit 1
-		patch -p0 < ../../wx_patches/wxwidgets-3.0.2_macosx_retina_opengl.patch || exit 1
-		patch -p0 < ../../wx_patches/wxwidgets-3.0.2_macosx_magnify_event.patch || exit 1
-		patch -p0 < ../../wx_patches/wxwidgets-3.0.2_macosx_unicode_pasteboard.patch || exit 1
-		patch -p1 < ../../wx_patches/wxwidgets-3.0.2_macosx_quasimodal.patch || exit 1
-		cd -
-	fi	
+check_wxpython_mashing() {
+        cd $WX_FORK_DIR
+        if [ ! -d wxPython ]; then
+                cp -r ../$WX_SRC_ORIG_DIR/wxPython .
+        fi
+        cd -
 }
 
 check_wx_build() {
@@ -57,14 +53,16 @@ check_wx_build() {
 	if [ -d wx-bin ]; then
 		echo "Skipping building wx-build because wx-bin exists."
 	else
-		check_wx_patched
+		check_wx_download
+                check_wx_orig
+                check_wxpython_mashing
 		if [ -d wx-build ]; then
 			rm -r wx-build
 		fi
 		mkdir wx-build
 		cd wx-build
 		export MAC_OS_X_VERSION_MIN_REQUIRED=10.9
-		../wx-src/configure \
+		../$WX_FORK_DIR/configure \
 		      --prefix=`pwd`/../wx-bin \
 		      --with-opengl \
 		      --enable-aui \
@@ -99,7 +97,7 @@ check_wxpython_build() {
     if [ -d wx-bin/lib/python2.7/site-packages ]; then
         echo "Skipping building wxPython because lib/python2.7/sitepackages exists."
     else
-            cd  wx-src/wxPython
+            cd $WX_FORK_DIR/wxPython
     
             export MAC_OS_X_VERSION_MIN_REQUIRED=10.9
             # build params
