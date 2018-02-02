@@ -20,12 +20,23 @@ check_wx_download() {
         if [ ! -d $WX_FORK_DIR ]; then
                 echo "Downloading the wxwidgets fork"
 		git clone --recurse-submodules -b $WX_FORK_BRANCH https://github.com/KiCad/wxWidgets.git
+	else
+		cd $WX_FORK_DIR
+		git fetch
+		if [ $(git rev-parse HEAD) != $(git rev-parse @{u}) ]; then
+			echo "Updating the wxwidgets fork"
+			git pull origin $WX_FORK_BRANCH
+			cd -
+			rm -r wx-bin
+		else
+			echo "No update of wxwidgets fork"
+			cd -
+		fi
         fi
 }
 
 check_wx_orig() {
 	if [ ! -d $WX_SRC_ORIG_DIR ]; then
-		check_wx_download
 		echo "Extracting $WX_SRC_NAME into $WX_SRC_ORIG_DIR"
 		mkdir $WX_SRC_ORIG_DIR
 		cd $WX_SRC_ORIG_DIR
@@ -44,16 +55,17 @@ check_wxpython_mashing() {
         if [ ! -d wxPython ]; then
                 cp -r ../$WX_SRC_ORIG_DIR/wxPython .
         fi
+        rm -r ../$WX_SRC_ORIG_DIR
         cd -
 }
 
 check_wx_build() {
         mkdir -p wx
         cd wx
+	check_wx_download
 	if [ -d wx-bin ]; then
 		echo "Skipping building wx-build because wx-bin exists."
 	else
-		check_wx_download
                 check_wx_orig
                 check_wxpython_mashing
 		if [ -d wx-build ]; then
@@ -80,7 +92,7 @@ check_wx_build() {
 		      CC=clang \
 		      CXX=clang++
 		make -j$NUM_OF_CORES
-		if [ $? == 0 ]; then 
+		if [ $? == 0 ]; then
 			mkdir ../wx-bin
 			make install
 			cd -
@@ -88,7 +100,7 @@ check_wx_build() {
 			cd -
 			exit 1
 		fi
-	fi	
+	fi
         cd ..
 }
 
@@ -98,7 +110,7 @@ check_wxpython_build() {
         echo "Skipping building wxPython because lib/python2.7/sitepackages exists."
     else
             cd $WX_FORK_DIR/wxPython
-    
+
             export MAC_OS_X_VERSION_MIN_REQUIRED=10.9
             # build params
             WXPYTHON_BUILD_OPTS="WX_CONFIG=`pwd`/../../wx-bin/bin/wx-config \
