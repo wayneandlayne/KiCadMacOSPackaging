@@ -20,4 +20,3 @@ if [ -d support/demos ]; then
 fi
 
 mv bin/demos support/
-rm -r bin/doc #we do not have scripting support yet
