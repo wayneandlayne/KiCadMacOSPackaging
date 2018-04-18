@@ -15,6 +15,11 @@ def which(program_name):
     return subprocess.check_output(["which", program_name]).strip()
 
 
+def find_oce():
+    cmd = ["find", "/usr/local/Cellar/oce", "-name", "Resources"]
+    return subprocess.check_output(cmd).strip()
+
+
 CMAKE_SETTINGS = ["-DDEFAULT_INSTALL_PATH=/Library/Application Support/kicad",
                   "-DCMAKE_C_COMPILER=" + which("clang"),
                   "-DCMAKE_CXX_COMPILER=" + which("clang++"),
@@ -28,7 +33,7 @@ CMAKE_SETTINGS = ["-DDEFAULT_INSTALL_PATH=/Library/Application Support/kicad",
                   "-DPYTHON_EXECUTABLE=" + which("python"),
                   "-DPYTHON_SITE_PACKAGE_PATH=" + os.path.realpath("wx/wx-bin/lib/python2.7/site-packages"),
                   "-DKICAD_USE_OCE=ON",
-                  "-DOCE_DIR=/Users/kicad/homebrew/opt/oce/OCE.framework/Versions/0.17/Resources/",
+                  "-DOCE_DIR=" + find_oce(),
                   "-DKICAD_SPICE=ON",
                   "-DKICAD_REPO_NAME=master-c4osx",
                   "-DCMAKE_INSTALL_PREFIX=../bin",
