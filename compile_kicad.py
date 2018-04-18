@@ -30,7 +30,7 @@ CMAKE_SETTINGS = ["-DDEFAULT_INSTALL_PATH=/Library/Application Support/kicad",
                   "-DKICAD_USE_OCE=ON",
                   "-DOCE_DIR=/Users/kicad/homebrew/opt/oce/OCE.framework/Versions/0.17/Resources/",
                   "-DKICAD_SPICE=ON",
-                  "-DKICAD_REPO_NAME=maser-c4osx",
+                  "-DKICAD_REPO_NAME=master-c4osx",
                   "-DCMAKE_INSTALL_PREFIX=../bin",
                   "-DCMAKE_BUILD_TYPE=RelWithDebInfo"]
 
