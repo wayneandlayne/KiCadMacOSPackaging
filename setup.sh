@@ -24,8 +24,9 @@ check_brew() {
 check_brew_depends() {
 	echo "Installing dependencies."
 	check_brew
-        if ! brew list gettext cmake doxygen wget glew cairo openssl oce > /dev/null; then
-            brew install --build-bottle gettext swig pixman  cmake doxygen wget glew cairo openssl brewsci/science/oce #build-bottle is so it builds for the oldest mac CPU supported by homebrew, which is probably ok for us
+        if ! brew list gettext cmake doxygen wget glew cairo openssl oce libngspice > /dev/null; then
+            #build-bottle is so it builds for the oldest mac CPU supported by homebrew, which is probably ok for us
+            brew install --build-bottle gettext swig pixman  cmake doxygen wget glew cairo openssl brewsci/science/oce libngspice
 
 	# You also need git, but if you have brew, you have git.
         fi
