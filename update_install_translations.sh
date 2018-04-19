@@ -3,6 +3,7 @@
 set -e
 set -x
 
+export PATH="/usr/local/opt/gettext/bin:$PATH"
 BASE=`pwd`
 I18N_DIR=i18n
 I18N_GIT=https://github.com/KiCad/kicad-i18n.git
