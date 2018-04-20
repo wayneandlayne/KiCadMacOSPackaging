@@ -16,8 +16,8 @@ def which(program_name):
 
 
 def find_oce():
-    cmd = ["find", "/usr/local/Cellar/oce", "-name", "Resources"]
-    return subprocess.check_output(cmd).strip()
+    oce_cellar = subprocess.check_output(["brew", "--cellar", "oce"]).strip()
+    return subprocess.check_output(["find", oce_cellar, "-name", "Resources"]).strip()
 
 
 CMAKE_SETTINGS = ["-DDEFAULT_INSTALL_PATH=/Library/Application Support/kicad",
